@@ -1,20 +1,49 @@
 #include<iostream>
 #include<algorithm>
+#include<vector>
 
 #define INF ((unsigned) ~0)
 
 using namespace std;
 
-int x, y;
+vector <int> x;
+vector <int> y;
+
 unsigned int minDistance = INF;
+
+void storeMin(int *A, int adr)
+{
+    if(x.empty() && y.empty())
+    {
+        x.push_back(adr);
+        y.push_back(adr + 1);       
+    }
+    else
+    {
+        if(abs(A[x.front()] - A[y.front()]) > minDistance)
+        {
+            x.clear();
+            x.push_back(adr);
+            y.clear();
+            y.push_back(adr + 1);
+        }
+        else if(abs(A[x.front()] - A[y.front()]) == minDistance)
+        {
+            if(A[x.back()] != A[adr] && A[y.back()] != A[adr + 1])
+            {
+                x.push_back(adr);
+                y.push_back(adr + 1);                
+            }
+        }
+    }
+}
 
 void compareMid(int *A, int mid)
 {
-    if(abs(A[mid] - A[mid + 1]) < minDistance)
+    if(abs(A[mid] - A[mid + 1]) <= minDistance)
     {
         minDistance = abs(A[mid] - A[mid + 1]);
-        x = mid;
-        y = mid + 1;
+        storeMin(A, mid);
     }
 }
 
@@ -29,11 +58,10 @@ void closestPair(int *A, int left, int right)
 
     if(right = left + 1)
     {
-        if(abs(A[left] - A[right]) < minDistance)
+        if(abs(A[left] - A[right]) <= minDistance)
         {
             minDistance = abs(A[left] - A[right]);
-            x = left;
-            y = right;
+            storeMin(A, left);
         }
     }
     compareMid(A, mid);
@@ -53,8 +81,12 @@ int main()
     sort(A, A + size);
 
     closestPair(A, 0, size);
-
-    cout<<endl<<"The closest pair of points are : ("<<A[x]<<", "<<A[y]<<")"<<endl;
+    
+    cout<<endl<<endl<<"The closest pair of points are : ";
+    for(int i = 0; i < x.size(); i++)
+    {
+        cout<<"("<<A[x.at(i)]<<", "<<A[y.at(i)]<<") ";
+    }
     cout<<endl<<"The distance between the pair of points is : "<<minDistance<<endl<<endl;
 
     system("pause");
