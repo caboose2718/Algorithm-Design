@@ -73,6 +73,12 @@ int main()
     cout<<endl<<"Enter the number of inputs : ";
     cin>>size;
 
+    if(size < 2)
+    {
+        cout<<endl<<"Insufficient Input ! "<<endl;
+        return(0);
+    }
+
     cout<<endl<<"Enter the distinct inputs : ";
     int *A = new int[size];
     for(int i = 0; i < size; i++)
@@ -84,11 +90,8 @@ int main()
     
     cout<<endl<<endl<<"The closest pair of points are : ";
     for(int i = 0; i < x.size(); i++)
-    {
         cout<<"("<<A[x.at(i)]<<", "<<A[y.at(i)]<<") ";
-    }
     cout<<endl<<"The distance between the pair of points is : "<<minDistance<<endl<<endl;
 
-    system("pause");
     return(0);
 }
