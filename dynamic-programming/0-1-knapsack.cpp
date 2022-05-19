@@ -84,5 +84,9 @@ int main()
         cout<<endl<<"Item "<<i + 1<<list.at(i);
     cout<<endl<<"Total Value : "<<matrix[num][capacity]<<endl;
 
+    for(int i = 0; i <= num; i++)
+        delete matrix[i];
+    delete matrix;
+
     return(0);
 }
