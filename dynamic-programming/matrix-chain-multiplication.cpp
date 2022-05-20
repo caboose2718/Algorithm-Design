@@ -33,7 +33,7 @@ int main()
         cin>>dim[i - 1]>>dim[i];
         if(i > 1 && temp != dim[i - 1])
         {
-            cout<<endl<<"Matrix "<<i<<" has invalid dimensions ! ";
+            cout<<endl<<"M"<<i<<" has invalid dimensions ! "<<endl;
             return(0);
         }
     }
