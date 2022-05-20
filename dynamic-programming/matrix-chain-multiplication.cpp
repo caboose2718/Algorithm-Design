@@ -63,7 +63,6 @@ int main()
                     table[i][j] = cost;
                     record[i][j] = k;
                 }
-
             }
         }
     }
