@@ -56,7 +56,7 @@ void closestPair(int *A, int left, int right)
     closestPair(A, left, mid);
     closestPair(A, mid + 1, right);
 
-    if(right = left + 1)
+    if(right == left + 1)
     {
         if(abs(A[left] - A[right]) <= minDistance)
         {
